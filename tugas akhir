@@ -1,0 +1,40 @@
+<?php
+//koneksi ke database
+$koneksi = mysqli_connect("localhost", "root", "", "shopee");
+
+// ambil data dari tabel 
+$result = mysqli_query($koneksi, "SELECT * from mahasiswa");
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halaman Admin</title>
+</head>
+<body>
+  <h1>Daftar mahasiswa</h1>
+    <table border="1" cellpadding="10" cellspacing="0">
+      <tr>
+        <th>nim</th>
+        <th>nama_mhs</th>
+        <th>alamat</th>
+        <th>jekel</th>
+      </tr>
+
+      <?php $i=1; ?>
+        <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+        <tr>
+            <td><?= $row['nim'] ?></td>
+            <td><?= $row['nama_mhs'] ?></td>
+            <td><?= $row['alamat'] ?></td>
+            <td><?= $row['jekel'] ?></td>
+			      
+        </tr>
+        <?php $i++ ?>
+        <?php endwhile ?>      
+    </table>
+</body>
+</html>
